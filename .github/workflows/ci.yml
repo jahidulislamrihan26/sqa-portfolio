@@ -13,6 +13,11 @@ jobs:
         working-directory: api-testing
       - run: npm test
         working-directory: api-testing
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: api-reports
+          path: api-testing/reports
 
   ui:
     runs-on: ubuntu-latest

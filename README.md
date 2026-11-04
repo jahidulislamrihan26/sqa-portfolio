@@ -5,7 +5,7 @@ Four types of software testing, each in its own folder.
 | Folder | Type | Target | Tool |
 |---|---|---|---|
 | `manual-testing/` | Manual | https://www.saucedemo.com | Test plan, test cases (CSV), bug reports |
-| `api-testing/` | API | https://jsonplaceholder.typicode.com | Postman collection + Newman |
+| `api-testing/` | API | https://restful-booker.herokuapp.com | Postman collection + Newman, JSON Schema, data-driven |
 | `performance-testing/` | Performance | https://jsonplaceholder.typicode.com | k6 load test |
 | `automation-testing/` | UI automation | https://www.saucedemo.com | Playwright |
 
