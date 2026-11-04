@@ -1,0 +1,25 @@
+# SQA Portfolio
+
+Four types of software testing, each in its own folder.
+
+| Folder | Type | Target | Tool |
+|---|---|---|---|
+| `manual-testing/` | Manual | https://www.saucedemo.com | Test plan, test cases (CSV), bug reports |
+| `api-testing/` | API | https://jsonplaceholder.typicode.com | Postman collection + Newman |
+| `performance-testing/` | Performance | https://jsonplaceholder.typicode.com | k6 load test |
+| `automation-testing/` | UI automation | https://www.saucedemo.com | Playwright |
+
+## Run locally
+
+```bash
+# API tests
+cd api-testing && npm install && npm test
+
+# Performance test (needs k6)
+k6 run performance-testing/load-test.js
+
+# UI automation
+cd automation-testing && npm install && npx playwright install chromium && npm test
+```
+
+CI (`.github/workflows/ci.yml`) runs API and UI tests on every push.
