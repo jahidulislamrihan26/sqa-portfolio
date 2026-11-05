@@ -1,6 +1,11 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *' # nightly: catches changes in the public sites under test
 
 jobs:
   api:
@@ -21,21 +26,29 @@ jobs:
 
   ui:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: npm install
         working-directory: automation-testing
-      - run: npx playwright install --with-deps chromium
+      - run: npm run typecheck
         working-directory: automation-testing
-      - run: npm test
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+        working-directory: automation-testing
+      - run: npx playwright test --project=${{ matrix.browser }}
         working-directory: automation-testing
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: playwright-report
-          path: automation-testing/playwright-report
+          name: playwright-report-${{ matrix.browser }}
+          path: |
+            automation-testing/playwright-report
+            automation-testing/reports
 
   performance:
     runs-on: ubuntu-latest
