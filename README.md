@@ -12,7 +12,7 @@ Four complete software-testing projects, from planning to reports to automated c
 |---|---|---|---|
 | [**Manual testing**](manual-testing) | [saucedemo.com](https://www.saucedemo.com) (web shop) | Strategy, risk-based plan, 85 test cases, traceability matrix, 6 exploratory charters, defect reports with screenshots, summary report | 85 cases run: 60 pass, 25 fail. **19 defects** (10 genuine), including a login bypass with a forged cookie and checkout accepting empty or repeated orders. Verdict: not ready for release |
 | [**API testing**](api-testing) | [Restful-Booker](https://restful-booker.herokuapp.com) (booking API) | Postman and Newman suite built on an OpenAPI 3 spec I wrote: schema contract checks, auth, a 14-body validation matrix, HTTP behaviour (ETag, 304, 415, 406), security checks, data-driven runs, coverage report, self-cleaning test data | 186 assertions: 151 pass, 35 expected failures, **0 unexpected**; all 23 documented responses covered. **13 defects**, e.g. invalid dates stored as `0NaN-aN-aN`, decimals truncated, failed login returns 200 |
-| [**Performance testing**](performance-testing) | Demo shop API (run locally) | k6 smoke, load, stress, spike and soak tests with pass/fail targets, an HTML report, and recommendations | Healthy to **about 500 req/s**, then a cliff at 600 (p95 21 ms to 1.5 s). Fails fast, recovers fully. Soak flat |
+| [**Performance testing**](performance-testing) | Real demo shop (Node.js + SQLite, run locally, nothing simulated) | k6 smoke, load, shopper-journey, stress, spike and soak tests; per-endpoint targets; CPU and event-loop telemetry that proves the cause; recommendations | 400 req/s: p95 17 ms. 5,110 shopper journeys, 100% correct. Healthy to **at least 900 req/s** (up to about 2,300 in the best run; capacity varied 2x between runs and the report says so). Latency first, then refused connections; recovers fully. Cause: one CPU-bound process |
 | [**UI automation**](automation-testing) | [saucedemo.com](https://www.saucedemo.com) | Playwright and TypeScript with the **Page Object Model**, fixtures, data-driven tests, accessibility scans, expected-failure tests for known bugs | 69 tests on **Chromium, Firefox and WebKit**; 208 of 208 runs passed in a flakiness check |
 
 ## How the projects connect
@@ -33,10 +33,10 @@ The defects found by hand in the manual project reappear as expected-failure tes
 - **See evidence:** [defect reports with screenshots](manual-testing/defects), [API defect reports](api-testing/docs/defects/README.md), [Excel workbook](manual-testing/test-suite/SauceDemo-Test-Suite.xlsx).
 
 ## Run it yourself
-Needs Node 20 or newer. The performance project also needs [k6](https://k6.io/docs/get-started/installation/).
+Needs Node 20 or newer (the performance project needs Node 22.13 or newer, because its shop uses Node's built-in SQLite) and [k6](https://k6.io/docs/get-started/installation/).
 ```bash
 cd api-testing && npm install && npm test                     # API suite, writes HTML and JUnit reports
-cd performance-testing && npm test                            # about 12 minutes; npm run test:ci is the short profile
+cd performance-testing && npm test                            # about 20 minutes; npm run test:ci is the short profile
 cd automation-testing && npm install && npx playwright install chromium && npm test
 cd manual-testing/tools && npm install && npm run build       # regenerates the Excel workbook and reports
 ```
