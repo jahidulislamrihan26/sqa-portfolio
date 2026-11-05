@@ -41,7 +41,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browser: [chromium, firefox, webkit]
+        include:
+          - { project: chromium, install: chromium }
+          - { project: firefox, install: firefox }
+          - { project: webkit, install: webkit }
+          - { project: mobile-chrome, install: chromium } # a phone profile on the Chromium engine
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -53,15 +57,56 @@ jobs:
         working-directory: automation-testing
       - run: npm run typecheck
         working-directory: automation-testing
-      # The one-time login setup runs in Chromium, so every matrix job needs it as well as its own browser.
-      - run: npx playwright install --with-deps chromium ${{ matrix.browser }}
+      - run: npm run lint
         working-directory: automation-testing
-      - run: npx playwright test --project=${{ matrix.browser }}
+      # The one-time login setup runs in Chromium, so every matrix job needs it as well as its own browser.
+      - run: npx playwright install --with-deps chromium ${{ matrix.install }}
+        working-directory: automation-testing
+      - run: npx playwright test --project=${{ matrix.project }}
+        working-directory: automation-testing
+      - name: Run summary
+        if: always()
+        run: node tools/summary.js >> "$GITHUB_STEP_SUMMARY"
+        working-directory: automation-testing
+      - name: Traceability document is up to date
+        if: matrix.project == 'chromium'
+        run: |
+          node tools/trace.js
+          git diff --exit-code docs/traceability.md
         working-directory: automation-testing
       - uses: actions/upload-artifact@v6
         if: always()
         with:
-          name: playwright-report-${{ matrix.browser }}
+          name: playwright-report-${{ matrix.project }}
+          path: |
+            automation-testing/playwright-report
+            automation-testing/reports
+
+  # Nightly only: every test five times in a row with no retries, to catch flaky tests early.
+  stability:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: automation-testing/package-lock.json
+      - run: npm ci
+        working-directory: automation-testing
+      - run: npx playwright install --with-deps chromium
+        working-directory: automation-testing
+      - run: npx playwright test --project=chromium --repeat-each=5 --retries=0
+        working-directory: automation-testing
+      - name: Run summary
+        if: always()
+        run: node tools/summary.js >> "$GITHUB_STEP_SUMMARY"
+        working-directory: automation-testing
+      - uses: actions/upload-artifact@v6
+        if: always()
+        with:
+          name: stability-report
           path: |
             automation-testing/playwright-report
             automation-testing/reports

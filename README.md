@@ -10,15 +10,15 @@ Four complete software-testing projects, from planning to reports to automated c
 
 | Project | Target | What it shows | Headline result |
 |---|---|---|---|
-| [**Manual testing**](manual-testing) | [saucedemo.com](https://www.saucedemo.com) (web shop) | Strategy, risk-based plan, 85 test cases, traceability matrix, 6 exploratory charters, defect reports with screenshots, summary report | 85 cases run: 60 pass, 25 fail. **19 defects** (10 genuine), including a login bypass with a forged cookie and checkout accepting empty or repeated orders. Verdict: not ready for release |
+| [**Manual testing**](manual-testing) | [saucedemo.com](https://www.saucedemo.com) (web shop) | Strategy, risk-based plan, 87 test cases, traceability matrix, 6 exploratory charters, defect reports with screenshots, summary report | 87 cases run: 60 pass, 27 fail. **20 defects** (11 genuine), including a login bypass with a forged cookie, a cart that keyboard users cannot open, and checkout accepting empty or repeated orders. Verdict: not ready for release |
 | [**API testing**](api-testing) | [Restful-Booker](https://restful-booker.herokuapp.com) (booking API) | Postman and Newman suite built on an OpenAPI 3 spec I wrote: schema contract checks, auth, a 14-body validation matrix, HTTP behaviour (ETag, 304, 415, 406), security checks, data-driven runs, coverage report, self-cleaning test data | 186 assertions: 151 pass, 35 expected failures, **0 unexpected**; all 23 documented responses covered. **13 defects**, e.g. invalid dates stored as `0NaN-aN-aN`, decimals truncated, failed login returns 200 |
 | [**Performance testing**](performance-testing) | Real demo shop (Node.js + SQLite, run locally, nothing simulated) | k6 smoke, load, shopper-journey, stress, spike and soak tests; per-endpoint targets; CPU and event-loop telemetry that proves the cause; recommendations | 400 req/s: p95 17 ms. 5,110 shopper journeys, 100% correct. Healthy to **at least 900 req/s** (up to about 2,300 in the best run; capacity varied 2x between runs and the report says so). Latency first, then refused connections; recovers fully. Cause: one CPU-bound process |
-| [**UI automation**](automation-testing) | [saucedemo.com](https://www.saucedemo.com) | Playwright and TypeScript with the **Page Object Model**, fixtures, data-driven tests, accessibility scans, expected-failure tests for known bugs | 69 tests on **Chromium, Firefox and WebKit**; 208 of 208 runs passed in a flakiness check |
+| [**UI automation**](automation-testing) | [saucedemo.com](https://www.saucedemo.com) | Playwright and TypeScript with the **Page Object Model**, fixtures, tests linked to manual cases, keyboard and accessibility tests, expected-failure tests for all known bugs, lint, run summary | 115 tests on **Chromium, Firefox, WebKit and a phone profile**; **82 of 87 manual cases automated (94%)**; 339 runs with 0 flaky. Its keyboard test found a Critical defect (the cart cannot be opened by keyboard) that the accessibility scan missed |
 
 ## How the projects connect
 ```mermaid
 flowchart LR
-    M[Manual testing<br/>find defects, write<br/>evidence] -->|19 defects, test ideas| A[UI automation<br/>regression suite,<br/>known bugs as tests]
+    M[Manual testing<br/>find defects, write<br/>evidence] -->|20 defects, test ideas| A[UI automation<br/>regression suite,<br/>known bugs as tests]
     M -->|same practice site| A
     API[API testing<br/>contract, security,<br/>known bugs as tests] --> CI
     A --> CI[GitHub Actions<br/>every push + nightly]
