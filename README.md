@@ -10,7 +10,7 @@ Four complete software-testing projects, from planning to reports to automated c
 
 | Project | Target | What it shows | Headline result |
 |---|---|---|---|
-| [**Manual testing**](manual-testing) | [saucedemo.com](https://www.saucedemo.com) (web shop) | Strategy, risk-based plan, 64 test cases, traceability matrix, exploratory charters, defect reports with screenshots, summary report | 60 cases run: 44 pass, 16 fail. **12 defects** (3 genuine). Checkout accepts an empty cart and invalid data. Verdict: conditional go |
+| [**Manual testing**](manual-testing) | [saucedemo.com](https://www.saucedemo.com) (web shop) | Strategy, risk-based plan, 85 test cases, traceability matrix, 6 exploratory charters, defect reports with screenshots, summary report | 85 cases run: 60 pass, 25 fail. **19 defects** (10 genuine), including a login bypass with a forged cookie and checkout accepting empty or repeated orders. Verdict: not ready for release |
 | [**API testing**](api-testing) | [Restful-Booker](https://restful-booker.herokuapp.com) (booking API) | Postman and Newman suite: JSON Schema contract checks, auth, negative and boundary cases, security checks, data-driven runs, self-cleaning test data | 133 assertions: 117 pass, 16 expected failures, **0 unexpected**. **9 defects**, e.g. failed login returns 200 and bad input returns 500 |
 | [**Performance testing**](performance-testing) | Demo shop API (run locally) | k6 smoke, load, stress, spike and soak tests with pass/fail targets, an HTML report, and recommendations | Healthy to **about 500 req/s**, then a cliff at 600 (p95 21 ms to 1.5 s). Fails fast, recovers fully. Soak flat |
 | [**UI automation**](automation-testing) | [saucedemo.com](https://www.saucedemo.com) | Playwright and TypeScript with the **Page Object Model**, fixtures, data-driven tests, accessibility scans, expected-failure tests for known bugs | 69 tests on **Chromium, Firefox and WebKit**; 208 of 208 runs passed in a flakiness check |
@@ -18,7 +18,7 @@ Four complete software-testing projects, from planning to reports to automated c
 ## How the projects connect
 ```mermaid
 flowchart LR
-    M[Manual testing<br/>find defects, write<br/>evidence] -->|12 defects, test ideas| A[UI automation<br/>regression suite,<br/>known bugs as tests]
+    M[Manual testing<br/>find defects, write<br/>evidence] -->|19 defects, test ideas| A[UI automation<br/>regression suite,<br/>known bugs as tests]
     M -->|same practice site| A
     API[API testing<br/>contract, security,<br/>known bugs as tests] --> CI
     A --> CI[GitHub Actions<br/>every push + nightly]
