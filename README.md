@@ -41,6 +41,9 @@ cd automation-testing && npm install && npx playwright install chromium && npm t
 cd manual-testing/tools && npm install && npm run build       # regenerates the Excel workbook and reports
 ```
 
+## License
+Released under the [MIT License](LICENSE). Copyright (c) 2026 Md. Jahidul Islam Rihan.
+
 ## Honest notes
 - **Practice targets.** The web shop and the booking API are public practice systems built for testers. Several defects are failures those systems create on purpose for named test users; they are labelled **Seeded** and kept apart from **Genuine** defects when judging release readiness.
 - **The performance target is a model I run locally** (simulated latencies, a small database pool), because stress, spike and soak tests should not be aimed at someone else's free public service. The method and the behaviour pattern carry over; the exact 500 req/s figure does not.
