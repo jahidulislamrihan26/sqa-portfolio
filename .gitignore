@@ -13,4 +13,5 @@ automation-testing/reports/
 /playwright-ui-automation-pom/
 /qa-templates/
 /cypress-e2e-saucedemo/
+/selenium-pytest-saucedemo/
 private-notes/
