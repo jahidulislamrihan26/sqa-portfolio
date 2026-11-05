@@ -38,7 +38,8 @@ jobs:
         working-directory: automation-testing
       - run: npm run typecheck
         working-directory: automation-testing
-      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      # The one-time login setup runs in Chromium, so every matrix job needs it as well as its own browser.
+      - run: npx playwright install --with-deps chromium ${{ matrix.browser }}
         working-directory: automation-testing
       - run: npx playwright test --project=${{ matrix.browser }}
         working-directory: automation-testing
