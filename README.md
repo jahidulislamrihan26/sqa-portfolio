@@ -6,7 +6,7 @@ Four types of software testing, each in its own folder.
 |---|---|---|---|
 | `manual-testing/` | Manual | https://www.saucedemo.com | Test plan, test cases (CSV), bug reports |
 | `api-testing/` | API | https://restful-booker.herokuapp.com | Postman collection + Newman, JSON Schema, data-driven |
-| `performance-testing/` | Performance | https://jsonplaceholder.typicode.com | k6 load test |
+| `performance-testing/` | Performance | Local demo shop API (plus a tiny public baseline) | k6: smoke, load, stress, spike, soak |
 | `automation-testing/` | UI automation | https://www.saucedemo.com | Playwright |
 
 ## Run locally

@@ -41,5 +41,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
       - uses: grafana/setup-k6-action@v1
-      - run: k6 run performance-testing/load-test.js
+      - run: node tools/run-all.js --profile ci
+        working-directory: performance-testing
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: performance-reports
+          path: performance-testing/results
