@@ -26,6 +26,8 @@ jobs:
           cache-dependency-path: api-testing/package-lock.json
       - run: npm ci
         working-directory: api-testing
+      - run: npm run lint:spec
+        working-directory: api-testing
       - run: npm test
         working-directory: api-testing
       - uses: actions/upload-artifact@v6
