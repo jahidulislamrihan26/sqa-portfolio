@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/jahidulislamrihan26/sqa-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/jahidulislamrihan26/sqa-portfolio/actions/workflows/ci.yml)
 
+**[Open the live test reports](https://jahidulislamrihan26.github.io/sqa-portfolio/)** (UI, API and performance, regenerated on every push).
+
 Four complete software-testing projects, from planning to reports to automated checks in CI. Each folder stands alone with its own README, plan, results and findings. Every number below was measured by running the tests; nothing is estimated.
 
 ## The four projects at a glance
@@ -27,6 +29,7 @@ The defects found by hand in the manual project reappear as expected-failure tes
 ## Where to start
 - **Quick read (5 minutes):** [manual test summary](manual-testing/docs/05-test-summary-report.md), [API summary](api-testing/docs/test-summary-report.md), [performance summary](performance-testing/docs/test-summary-report.md).
 - **See the code structure:** [page objects](automation-testing/pages) and [fixtures](automation-testing/fixtures).
+- **Open the live reports:** [UI](https://jahidulislamrihan26.github.io/sqa-portfolio/ui/playwright-report/index.html), [API](https://jahidulislamrihan26.github.io/sqa-portfolio/api/functional-report.html), [performance](https://jahidulislamrihan26.github.io/sqa-portfolio/performance/).
 - **See evidence:** [defect reports with screenshots](manual-testing/defects), [API defect reports](api-testing/docs/defects/README.md), [Excel workbook](manual-testing/test-suite/SauceDemo-Test-Suite.xlsx).
 
 ## Run it yourself
