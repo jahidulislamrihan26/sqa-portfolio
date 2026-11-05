@@ -4,8 +4,6 @@ on:
   push:
   pull_request:
   workflow_dispatch:
-  schedule:
-    - cron: '0 3 * * *' # nightly: catches changes in the public sites under test
 
 permissions:
   contents: read
@@ -15,123 +13,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  api:
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: api-testing/package-lock.json
-      - run: npm ci
-        working-directory: api-testing
-      - run: npm run lint:spec
-        working-directory: api-testing
-      - run: npm test
-        working-directory: api-testing
-      - uses: actions/upload-artifact@v6
-        if: always()
-        with:
-          name: api-reports
-          path: api-testing/reports
-
-  ui:
-    runs-on: ubuntu-24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - { project: chromium, install: chromium }
-          - { project: firefox, install: firefox }
-          - { project: webkit, install: webkit }
-          - { project: mobile-chrome, install: chromium } # a phone profile on the Chromium engine
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: automation-testing/package-lock.json
-      - run: npm ci
-        working-directory: automation-testing
-      - run: npm run typecheck
-        working-directory: automation-testing
-      - run: npm run lint
-        working-directory: automation-testing
-      # The one-time login setup runs in Chromium, so every matrix job needs it as well as its own browser.
-      - run: npx playwright install --with-deps chromium ${{ matrix.install }}
-        working-directory: automation-testing
-      - run: npx playwright test --project=${{ matrix.project }}
-        working-directory: automation-testing
-      - name: Run summary
-        if: always()
-        run: node tools/summary.js >> "$GITHUB_STEP_SUMMARY"
-        working-directory: automation-testing
-      - name: Traceability document is up to date
-        if: matrix.project == 'chromium'
-        run: |
-          node tools/trace.js
-          git diff --exit-code docs/traceability.md
-        working-directory: automation-testing
-      - uses: actions/upload-artifact@v6
-        if: always()
-        with:
-          name: playwright-report-${{ matrix.project }}
-          path: |
-            automation-testing/playwright-report
-            automation-testing/reports
-
-  # Nightly only: every test five times in a row with no retries, to catch flaky tests early.
-  stability:
-    if: github.event_name == 'schedule'
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: automation-testing/package-lock.json
-      - run: npm ci
-        working-directory: automation-testing
-      - run: npx playwright install --with-deps chromium
-        working-directory: automation-testing
-      - run: npx playwright test --project=chromium --repeat-each=5 --retries=0
-        working-directory: automation-testing
-      - name: Run summary
-        if: always()
-        run: node tools/summary.js >> "$GITHUB_STEP_SUMMARY"
-        working-directory: automation-testing
-      - uses: actions/upload-artifact@v6
-        if: always()
-        with:
-          name: stability-report
-          path: |
-            automation-testing/playwright-report
-            automation-testing/reports
-
-  performance:
+  links:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with: { node-version: 22 }
-      - uses: grafana/setup-k6-action@v1
-      - run: node tools/run-all.js --profile ci
-        working-directory: performance-testing
-      - uses: actions/upload-artifact@v6
-        if: always()
-        with:
-          name: performance-reports
-          path: performance-testing/results
+      - name: Every relative link in the documents works
+        run: node tools/check-links.js
 
-  # Publishes the reports as a small website so they can be opened with one click.
-  # Off until GitHub Pages is enabled (Settings > Pages > Source: GitHub Actions) and the
-  # repository variable ENABLE_PAGES is set to true (Settings > Secrets and variables > Actions > Variables).
+  # Publishes the hub page: https://jahidulislamrihan26.github.io/sqa-portfolio/
   pages:
-    needs: [api, ui, performance]
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.ENABLE_PAGES == 'true'
+    needs: links
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -142,20 +36,9 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/download-artifact@v7
-        with:
-          name: api-reports
-          path: site/api
-      - uses: actions/download-artifact@v7
-        with:
-          name: playwright-report-chromium
-          path: site/ui
-      - name: Assemble site
-        run: |
+      - run: |
+          mkdir site
           cp .github/pages/index.html site/index.html
-          mkdir -p site/performance
-          # The full 12-minute performance run is committed; CI only runs a short profile.
-          cp performance-testing/results/report.html site/performance/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v5
         with:

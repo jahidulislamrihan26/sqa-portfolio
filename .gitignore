@@ -5,3 +5,10 @@ newman/
 *.log
 .auth/
 automation-testing/reports/
+
+# Local working copies of the project repositories (each is its own git repository)
+/manual-testing-saucedemo/
+/api-testing-newman-openapi/
+/k6-performance-testing/
+/playwright-ui-automation-pom/
+/qa-templates/
