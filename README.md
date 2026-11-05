@@ -35,15 +35,17 @@ The defects found by hand in the manual project reappear as expected-failure tes
 
 ## Where to start
 - **Quick read (5 minutes):** the summary reports: [manual](https://github.com/jahidulislamrihan26/manual-testing-saucedemo/blob/main/docs/05-test-summary-report.md), [API](https://github.com/jahidulislamrihan26/api-testing-newman-openapi/blob/main/docs/test-summary-report.md), [performance](https://github.com/jahidulislamrihan26/k6-performance-testing/blob/main/docs/test-summary-report.md).
-- **See the code structure:** [page objects](https://github.com/jahidulislamrihan26/playwright-ui-automation-pom/tree/main/pages) and [fixtures](https://github.com/jahidulislamrihan26/playwright-ui-automation-pom/tree/main/fixtures).
+- **See the code structure:** [page objects](https://github.com/jahidulislamrihan26/playwright-ui-automation-pom/tree/main/pages) and [fixtures](https://github.com/jahidulislamrihan26/playwright-ui-automation-pom/tree/main/fixtures) in Playwright, and the same Page Object idea in [Selenium with Python](https://github.com/jahidulislamrihan26/selenium-pytest-saucedemo/tree/main/pages).
+- **See proof the tests catch bugs:** the [mutation report](https://github.com/jahidulislamrihan26/api-testing-newman-openapi/blob/main/docs/mutation-report.md) (20 injected faults, all caught).
 - **See evidence:** [defect reports with screenshots](https://github.com/jahidulislamrihan26/manual-testing-saucedemo/tree/main/defects), [API defect reports](https://github.com/jahidulislamrihan26/api-testing-newman-openapi/blob/main/docs/defects/README.md), the [Excel test suite](https://github.com/jahidulislamrihan26/manual-testing-saucedemo/blob/main/test-suite/SauceDemo-Test-Suite.xlsx).
 - **Use something:** the [templates and checklists](https://github.com/jahidulislamrihan26/qa-templates).
 
 ## Run them yourself
-Each repository's README has the exact commands. All need Node 20 or newer (the performance project needs 22.13 or newer) and the performance project also needs [k6](https://k6.io/docs/get-started/installation/).
+Each repository's README has the exact commands. The Node projects need Node 20 or newer (the performance project needs 22.13 or newer, and also [k6](https://k6.io/docs/get-started/installation/)); the Selenium project needs Python 3.10 or newer and Chrome.
 ```bash
 git clone https://github.com/jahidulislamrihan26/api-testing-newman-openapi && cd api-testing-newman-openapi && npm install && npm test
 git clone https://github.com/jahidulislamrihan26/playwright-ui-automation-pom && cd playwright-ui-automation-pom && npm install && npx playwright install chromium && npm test
+git clone https://github.com/jahidulislamrihan26/cypress-e2e-saucedemo && cd cypress-e2e-saucedemo && npm install && npx cypress install && npm test
 ```
 
 CI (GitHub Actions) in each repository runs its tests on every push, and nightly where the target is a public site.
