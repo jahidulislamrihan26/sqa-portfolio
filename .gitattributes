@@ -2,3 +2,6 @@
 *.png binary
 *.xlsx binary
 *.webm binary
+
+# Tooling only: keep it out of the language bar of a documents repository
+tools/** linguist-vendored
