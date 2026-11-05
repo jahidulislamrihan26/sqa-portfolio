@@ -41,12 +41,7 @@ cd automation-testing && npm install && npx playwright install chromium && npm t
 cd manual-testing/tools && npm install && npm run build       # regenerates the Excel workbook and reports
 ```
 
+CI (GitHub Actions) runs the API suite, the UI suite on three browsers and a short performance profile on every push and nightly.
+
 ## License
 Released under the [MIT License](LICENSE). Copyright (c) 2026 Md. Jahidul Islam Rihan.
-
-## Honest notes
-- **Practice targets.** The web shop and the booking API are public practice systems built for testers. Several defects are failures those systems create on purpose for named test users; they are labelled **Seeded** and kept apart from **Genuine** defects when judging release readiness.
-- **The performance target is a model I run locally** (simulated latencies, a small database pool), because stress, spike and soak tests should not be aimed at someone else's free public service. The method and the behaviour pattern carry over; the exact 500 req/s figure does not.
-- **Not tested, and said so:** Firefox, Edge and Safari by hand, colour contrast and screen readers (manual project); token expiry and rate limits (API); multi-hour soak runs (performance). They are listed as *Not Run* or *Limitations*, never assumed to pass.
-- **A correction made along the way:** the manual project first reported that `performance_glitch_user` had no login delay, because the timing only watched the address bar. The automation suite measured when content actually appears (about 5 seconds), the manual report was corrected and a defect (BUG-012) added. The fix is recorded in the defect itself.
-- **CI** runs the API suite, the UI suite on three browsers and a short performance profile on every push and nightly. The public sites can change, so a nightly failure may mean the site moved, not the tests.
