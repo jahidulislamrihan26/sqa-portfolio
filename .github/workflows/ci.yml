@@ -7,18 +7,28 @@ on:
   schedule:
     - cron: '0 3 * * *' # nightly: catches changes in the public sites under test
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   api:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm install
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: api-testing/package-lock.json
+      - run: npm ci
         working-directory: api-testing
       - run: npm test
         working-directory: api-testing
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: api-reports
@@ -31,10 +41,13 @@ jobs:
       matrix:
         browser: [chromium, firefox, webkit]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
-      - run: npm install
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: automation-testing/package-lock.json
+      - run: npm ci
         working-directory: automation-testing
       - run: npm run typecheck
         working-directory: automation-testing
@@ -43,7 +56,7 @@ jobs:
         working-directory: automation-testing
       - run: npx playwright test --project=${{ matrix.browser }}
         working-directory: automation-testing
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: playwright-report-${{ matrix.browser }}
@@ -54,14 +67,51 @@ jobs:
   performance:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with: { node-version: 22 }
       - uses: grafana/setup-k6-action@v1
       - run: node tools/run-all.js --profile ci
         working-directory: performance-testing
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         if: always()
         with:
           name: performance-reports
           path: performance-testing/results
+
+  # Publishes the reports as a small website so they can be opened with one click.
+  # Off until GitHub Pages is enabled (Settings > Pages > Source: GitHub Actions) and the
+  # repository variable ENABLE_PAGES is set to true (Settings > Secrets and variables > Actions > Variables).
+  pages:
+    needs: [api, ui, performance]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.ENABLE_PAGES == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v7
+        with:
+          name: api-reports
+          path: site/api
+      - uses: actions/download-artifact@v7
+        with:
+          name: playwright-report-chromium
+          path: site/ui
+      - name: Assemble site
+        run: |
+          cp .github/pages/index.html site/index.html
+          mkdir -p site/performance
+          # The full 12-minute performance run is committed; CI only runs a short profile.
+          cp performance-testing/results/report.html site/performance/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v5
