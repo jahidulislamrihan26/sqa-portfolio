@@ -6,6 +6,8 @@ Software quality assurance work by **Md. Jahidul Islam Rihan**, as a set of stan
 
 **[Open the hub page](https://jahidulislamrihan26.github.io/sqa-portfolio/)** with links to every live report.
 
+[![The hub page with links to every live report](docs/images/hub-page.png)](https://jahidulislamrihan26.github.io/sqa-portfolio/)
+
 ## The projects
 
 | Project | Target | What it shows | Headline result |
