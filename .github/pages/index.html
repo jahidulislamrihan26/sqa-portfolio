@@ -10,6 +10,12 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jahidulislamrihan26.github.io/sqa-portfolio/">
 <meta property="og:image" content="https://jahidulislamrihan26.github.io/sqa-portfolio/images/playwright-report.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://jahidulislamrihan26.github.io/sqa-portfolio/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3864'/%3E%3Cpath d='M18 34l10 10 18-22' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Md. Jahidul Islam Rihan","jobTitle":"QA Automation Engineer","url":"https://jahidulislamrihan26.github.io/sqa-portfolio/","sameAs":["https://github.com/jahidulislamrihan26"],"address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"knowsLanguage":["Bengali","English"],"knowsAbout":["Test automation","Playwright","Cypress","Selenium","API testing","Postman","Performance testing","k6","Manual testing"]}
+</script>
 <style>
   :root { --bg:#f6f7f9; --card:#ffffff; --ink:#1b2430; --muted:#566272; --accent:#1f3864; --link:#0b5cad; --line:#e1e5ea; --band:#1f3864; --bandink:#ffffff; --chip:#eaf0fb; }
   @media (prefers-color-scheme: dark) { :root { --bg:#0f141b; --card:#171f29; --ink:#e8edf3; --muted:#a3afbd; --accent:#9dbcff; --link:#8fb4ff; --line:#2a3542; --band:#16233d; --bandink:#f2f6fc; --chip:#1f2c42; } }
@@ -25,6 +31,8 @@
   header.hero h1 { margin:0 0 6px; font-size:clamp(30px,5vw,44px); line-height:1.15; }
   header.hero .role { font-size:clamp(18px,2.6vw,22px); margin:0 0 14px; opacity:.95; }
   header.hero p.lead { max-width:680px; margin:0 0 24px; font-size:18px; opacity:.95; }
+  .chips { list-style:none; margin:0 0 22px; padding:0; display:flex; flex-wrap:wrap; gap:8px; }
+  .chips li { border:1px solid rgba(255,255,255,.55); border-radius:999px; padding:3px 13px; font-size:14px; font-weight:600; }
   .btns { display:flex; flex-wrap:wrap; gap:12px; }
   .btn { display:inline-block; padding:11px 20px; border-radius:8px; font-weight:600; text-decoration:none; border:2px solid #ffffff; }
   .btn.primary { background:#ffffff; color:#1f3864; }
@@ -46,20 +54,28 @@
   .card h3 { margin:0 0 6px; font-size:18px; color:var(--accent); }
   .card p { margin:0; color:var(--muted); font-size:15px; }
   .project { display:grid; grid-template-columns:1fr; gap:0; background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin-bottom:22px; }
-  @media (min-width:820px) { .project { grid-template-columns:1.05fr 1fr; } .project.flip .shot { order:2; } }
   .shot { background:var(--chip); display:flex; align-items:flex-start; }
   .shot img { display:block; width:100%; height:auto; }
-  @media (min-width:820px) { .shot img { height:100%; object-fit:cover; object-position:top left; } }
+  .shot img { max-height:430px; object-fit:cover; object-position:top; border-bottom:1px solid var(--line); }
   .shot.text { align-items:center; padding:24px; }
   .shot.text p { margin:0; color:var(--muted); font-size:15px; }
   .body { padding:22px 24px; }
   .body h3 { margin:0 0 8px; font-size:22px; color:var(--accent); }
   .body p { margin:0 0 10px; }
   .body ul { margin:0 0 14px; padding-left:20px; }
+  .body p.benefit { background:var(--chip); border-left:4px solid var(--accent); border-radius:6px; padding:8px 12px; margin:0 0 14px; font-size:15px; align-self:start; }
+  .shot a { display:block; width:100%; }
+  @media (min-width:820px) { .body { display:grid; grid-template-columns:1fr 1fr; gap:0 32px; } .body h3, .body > p:first-of-type, .body .tags, .body .links { grid-column:1 / -1; } }
   .body li { margin-bottom:4px; }
   .tags { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px; padding:0; list-style:none; }
   .tags li { background:var(--chip); color:var(--accent); border-radius:999px; padding:2px 11px; font-size:13px; font-weight:600; margin:0; }
   .links { display:flex; flex-wrap:wrap; gap:16px; font-weight:600; }
+  .about { display:grid; gap:0 36px; grid-template-columns:1fr; max-width:900px; }
+  .about p { margin:0 0 12px; font-size:17px; }
+  dl.facts { margin:8px 0 0; display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
+  dl.facts div { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:10px 14px; }
+  dl.facts dt { font-size:13px; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:.04em; }
+  dl.facts dd { margin:2px 0 0; font-weight:600; }
   .tools { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; }
   .tools .card h3 { font-size:16px; }
   ol.steps { counter-reset:s; list-style:none; margin:0; padding:0; display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
@@ -82,6 +98,7 @@
     <h1>Md. Jahidul Islam Rihan</h1>
     <p class="role">QA Automation Engineer · Dhaka, Bangladesh</p>
     <p class="lead">I find bugs before your users do. I build automated tests for web apps and APIs, and write defect reports your developers can act on. Every project below has a live report you can open.</p>
+    <ul class="chips" aria-label="Main tools"><li>Playwright</li><li>Cypress</li><li>Selenium</li><li>Postman</li><li>k6</li><li>SQL</li><li>GitHub Actions</li></ul>
     <div class="btns">
       <a class="btn primary" href="#projects">See my projects</a>
       <a class="btn ghost" href="https://github.com/jahidulislamrihan26">GitHub profile</a>
@@ -94,6 +111,7 @@
   <div class="wrap">
     <ul>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#tools">Tools</a></li>
       <li><a href="#process">How I work</a></li>
@@ -107,7 +125,7 @@
     <div class="stats" role="list" aria-label="Results in numbers">
       <div class="stat" role="listitem"><b>115</b><span>automated browser tests, 0 flaky in 345 runs</span></div>
       <div class="stat" role="listitem"><b>20 of 20</b><span>deliberately injected API faults caught by the suite</span></div>
-      <div class="stat" role="listitem"><b>87 · 20</b><span>manual test cases written, defects found with evidence</span></div>
+      <div class="stat" role="listitem"><b>87 cases</b><span>written by hand, and 20 defects found with evidence</span></div>
       <div class="stat" role="listitem"><b>5,110</b><span>shopper journeys load-tested, all correct</span></div>
     </div>
 
@@ -116,7 +134,7 @@
       <p class="sub">Each project is its own repository with automated checks on every change, documentation, and a report you can open.</p>
 
       <article class="project">
-        <div class="shot"><img src="images/playwright-report.png" width="1200" height="800" alt="Playwright test report: 116 results, all passed, 0 failed, 0 flaky" loading="lazy"></div>
+        <div class="shot"><a href="https://jahidulislamrihan26.github.io/playwright-ui-automation-pom/"><img src="images/playwright-report.png" width="1200" height="800" alt="Playwright test report with 116 results, all passed, 0 failed, 0 flaky. Opens the live report." loading="lazy"></a></div>
         <div class="body">
           <h3>Cross-browser UI test automation</h3>
           <p>A maintainable Playwright and TypeScript framework using the Page Object Model.</p>
@@ -126,13 +144,14 @@
             <li>Keyboard and accessibility checks; known site bugs kept as expected-failure tests</li>
             <li>0 flaky tests in 345 runs, run on every code change</li>
           </ul>
+          <p class="benefit"><strong>For you:</strong> your key user journeys are re-checked on every release in minutes, in every major browser, instead of by hand.</p>
           <ul class="tags" aria-label="Skills"><li>Playwright</li><li>TypeScript</li><li>Page Object Model</li><li>CI</li></ul>
           <div class="links"><a href="https://jahidulislamrihan26.github.io/playwright-ui-automation-pom/">Live report</a><a href="https://github.com/jahidulislamrihan26/playwright-ui-automation-pom">Code</a></div>
         </div>
       </article>
 
       <article class="project flip">
-        <div class="shot"><img src="images/api-report.png" width="1200" height="820" alt="API test report with a note explaining that the failed checks are documented defects" loading="lazy"></div>
+        <div class="shot"><a href="https://jahidulislamrihan26.github.io/api-testing-newman-openapi/"><img src="images/api-report.png" width="1200" height="820" alt="API test report with a note explaining that the failed checks are documented defects. Opens the live reports." loading="lazy"></a></div>
         <div class="body">
           <h3>API test suite from an OpenAPI spec</h3>
           <p>A Postman and Newman suite for a booking API, proven by mutation testing.</p>
@@ -142,13 +161,14 @@
             <li>20 deliberately injected faults, all caught by the suite</li>
             <li>Test data cleans up after itself; secrets removed from reports</li>
           </ul>
+          <p class="benefit"><strong>For you:</strong> a change that breaks your API is caught before your app's users see it, and the suite is proven to notice real mistakes.</p>
           <ul class="tags" aria-label="Skills"><li>Postman</li><li>Newman</li><li>OpenAPI</li><li>API testing</li></ul>
           <div class="links"><a href="https://jahidulislamrihan26.github.io/api-testing-newman-openapi/">Live reports</a><a href="https://github.com/jahidulislamrihan26/api-testing-newman-openapi">Code</a></div>
         </div>
       </article>
 
       <article class="project">
-        <div class="shot"><img src="images/manual-evidence.png" width="1280" height="720" alt="Evidence screenshot: the shop opens with only a forged session cookie and no password" loading="lazy"></div>
+        <div class="shot"><a href="https://github.com/jahidulislamrihan26/manual-testing-saucedemo/blob/main/defects/BUG-013.md"><img src="images/manual-evidence.png" width="1280" height="720" alt="Evidence screenshot: the shop opens with only a forged session cookie and no password. Opens the full defect report." loading="lazy"></a></div>
         <div class="body">
           <h3>Manual testing and defect reports</h3>
           <p>Risk-based strategy, test cases and clear bug reports. The screenshot is evidence from defect BUG-013: the shop opens with a forged cookie and no password.</p>
@@ -157,13 +177,14 @@
             <li>20 defects with steps and screenshots, including a login bypass and a cart keyboard users cannot open</li>
             <li>Summary report with a release recommendation, and a Jira-ready defect export</li>
           </ul>
+          <p class="benefit"><strong>For you:</strong> a clear, ranked list of what to fix before launch, with steps your developers can follow without asking questions.</p>
           <ul class="tags" aria-label="Skills"><li>Manual testing</li><li>Test design</li><li>Defect reporting</li><li>Exploratory testing</li></ul>
           <div class="links"><a href="https://github.com/jahidulislamrihan26/manual-testing-saucedemo/blob/main/docs/05-test-summary-report.md">Summary report</a><a href="https://github.com/jahidulislamrihan26/manual-testing-saucedemo">Code</a></div>
         </div>
       </article>
 
       <article class="project flip">
-        <div class="shot"><img src="images/k6-report.png" width="1300" height="800" alt="k6 performance report: smoke, load, journey, stress, spike and soak results with latency and error rates" loading="lazy"></div>
+        <div class="shot"><a href="https://jahidulislamrihan26.github.io/k6-performance-testing/"><img src="images/k6-report.png" width="1300" height="800" alt="k6 performance report with smoke, load, journey, stress, spike and soak results. Opens the live report." loading="lazy"></a></div>
         <div class="body">
           <h3>Load and stress testing a real shop</h3>
           <p>k6 tests against a real Node.js and SQLite shop, with server measurements that show the cause of slowdowns.</p>
@@ -172,6 +193,7 @@
             <li>Healthy to at least 900 requests per second; slows before it refuses connections</li>
             <li>20 SQL checks on the database found that orders never reduce stock</li>
           </ul>
+          <p class="benefit"><strong>For you:</strong> you learn how many users your system can take, and what breaks first, before launch day and not during it.</p>
           <ul class="tags" aria-label="Skills"><li>k6</li><li>Load testing</li><li>SQL</li><li>Performance</li></ul>
           <div class="links"><a href="https://jahidulislamrihan26.github.io/k6-performance-testing/">Live report</a><a href="https://github.com/jahidulislamrihan26/k6-performance-testing">Code</a></div>
         </div>
@@ -187,10 +209,25 @@
             <li>29 Selenium 4 tests in Python with pytest, page objects and explicit waits</li>
             <li>Screenshots saved for every failure</li>
           </ul>
+          <p class="benefit"><strong>For you:</strong> tests in the tool your team already uses, so they can read, run and extend them after I finish.</p>
           <ul class="tags" aria-label="Skills"><li>Cypress</li><li>Selenium</li><li>Python</li><li>pytest</li></ul>
           <div class="links"><a href="https://github.com/jahidulislamrihan26/cypress-e2e-saucedemo">Cypress code</a><a href="https://github.com/jahidulislamrihan26/selenium-pytest-saucedemo">Selenium code</a></div>
         </div>
       </article>
+    </section>
+
+    <section id="about" aria-labelledby="h-about">
+      <h2 id="h-about">About me</h2>
+      <div class="about">
+        <p>I'm a QA engineer based in Dhaka. I focus on automated tests for web apps and APIs, and on bug reports that developers can act on without having to ask me questions.</p>
+        <p>Every project on this page is built in the open: it runs automatically on every change and publishes its results, so you can check each number yourself instead of taking my word for it.</p>
+        <dl class="facts">
+          <div><dt>Based in</dt><dd>Dhaka, Bangladesh (UTC+6)</dd></div>
+          <div><dt>Languages</dt><dd>Bengali (native), English (fluent)</dd></div>
+          <div><dt>Focus</dt><dd>Test automation for web apps and APIs</dd></div>
+          <div><dt>Contact</dt><dd><a href="mailto:jahidulrihan3@gmail.com">jahidulrihan3@gmail.com</a></dd></div>
+        </dl>
+      </div>
     </section>
 
     <section id="services" aria-labelledby="h-services">
@@ -227,7 +264,7 @@
       <div class="contact">
         <h2 id="h-contact">Let's talk about your app</h2>
         <p>Send a few lines about your project: what it does, what you release, and what worries you most. I reply with a clear scope and a delivery date.</p>
-        <a class="btn primary" href="mailto:jahidulrihan3@gmail.com">jahidulrihan3@gmail.com</a>
+        <a class="btn primary" href="mailto:jahidulrihan3@gmail.com?subject=QA%20project%20enquiry&amp;body=What%20the%20app%20does%3A%0D%0A%0D%0AHow%20often%20you%20release%3A%0D%0A%0D%0AWhat%20worries%20you%20most%3A%0D%0A">Email me about your project</a>
         <a class="btn ghost" href="https://github.com/jahidulislamrihan26">GitHub</a>
       </div>
     </section>
@@ -235,7 +272,7 @@
 </main>
 
 <footer>
-  <div class="wrap">Md. Jahidul Islam Rihan · QA Automation Engineer · Dhaka, Bangladesh. Every number on this page comes from a test run you can open above.</div>
+  <div class="wrap">Md. Jahidul Islam Rihan · QA Automation Engineer · Dhaka, Bangladesh. Every number on this page comes from a test run documented in the linked repositories.</div>
 </footer>
 </body>
 </html>
