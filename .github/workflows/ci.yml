@@ -39,6 +39,8 @@ jobs:
       - run: |
           mkdir site
           cp .github/pages/index.html site/index.html
+          mkdir site/images
+          cp docs/images/playwright-report.png docs/images/api-report.png docs/images/k6-report.png docs/images/manual-evidence.png site/images/
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:

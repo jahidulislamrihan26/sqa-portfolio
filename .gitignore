@@ -15,3 +15,8 @@ automation-testing/reports/
 /cypress-e2e-saucedemo/
 /selenium-pytest-saucedemo/
 private-notes/
+
+# Personal files kept next to the repository, never published
+Assets/
+profile.jpg
+Jahidul-Islam-Rihan-CV.pdf
