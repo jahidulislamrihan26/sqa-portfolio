@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Md. Jahidul Islam Rihan | QA Automation Engineer</title>
-<meta name="description" content="QA Automation Engineer for web apps and APIs: Playwright, Cypress, Selenium, Postman API testing, k6 performance testing and clear defect reports. Projects with live reports.">
+<meta name="description" content="QA Automation Engineer for web, mobile and API testing: Playwright, Cypress, Selenium, Maestro, GraphQL and REST API testing, k6 performance testing and clear defect reports. Projects with live reports.">
 <meta property="og:title" content="Md. Jahidul Islam Rihan | QA Automation Engineer">
 <meta property="og:description" content="Automated tests for web apps and APIs, with live reports you can open: Playwright, Cypress, Selenium, Postman, k6.">
 <meta property="og:type" content="website">
@@ -14,7 +14,7 @@
 <link rel="canonical" href="https://jahidulislamrihan26.github.io/sqa-portfolio/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3864'/%3E%3Cpath d='M18 34l10 10 18-22' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Md. Jahidul Islam Rihan","jobTitle":"QA Automation Engineer","url":"https://jahidulislamrihan26.github.io/sqa-portfolio/","sameAs":["https://github.com/jahidulislamrihan26"],"address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"knowsLanguage":["Bengali","English"],"knowsAbout":["Test automation","Playwright","Cypress","Selenium","API testing","Postman","Performance testing","k6","Manual testing"]}
+{"@context":"https://schema.org","@type":"Person","name":"Md. Jahidul Islam Rihan","jobTitle":"QA Automation Engineer","url":"https://jahidulislamrihan26.github.io/sqa-portfolio/","sameAs":["https://github.com/jahidulislamrihan26"],"address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"knowsLanguage":["Bengali","English"],"knowsAbout":["Test automation","Playwright","Cypress","Selenium","Maestro","Mobile testing","GraphQL","API testing","Postman","Performance testing","k6","Manual testing"]}
 </script>
 <style>
   :root { --bg:#f6f7f9; --card:#ffffff; --ink:#1b2430; --muted:#566272; --accent:#1f3864; --link:#0b5cad; --line:#e1e5ea; --band:#1f3864; --bandink:#ffffff; --chip:#eaf0fb; }
@@ -98,7 +98,7 @@
     <h1>Md. Jahidul Islam Rihan</h1>
     <p class="role">QA Automation Engineer · Dhaka, Bangladesh</p>
     <p class="lead">I find bugs before your users do. I build automated tests for web apps and APIs, and write defect reports your developers can act on. Every project below has a live report you can open.</p>
-    <ul class="chips" aria-label="Main tools"><li>Playwright</li><li>Cypress</li><li>Selenium</li><li>Postman</li><li>k6</li><li>SQL</li><li>GitHub Actions</li></ul>
+    <ul class="chips" aria-label="Main tools"><li>Playwright</li><li>Cypress</li><li>Selenium</li><li>Postman</li><li>GraphQL</li><li>k6</li><li>SQL</li><li>Maestro</li><li>GitHub Actions</li></ul>
     <div class="btns">
       <a class="btn primary" href="#projects">See my projects</a>
       <a class="btn ghost" href="https://github.com/jahidulislamrihan26">GitHub profile</a>
@@ -214,6 +214,39 @@
           <div class="links"><a href="https://jahidulislamrihan26.github.io/cypress-e2e-saucedemo/">Cypress report</a><a href="https://jahidulislamrihan26.github.io/selenium-pytest-saucedemo/">Selenium reports</a><a href="https://github.com/jahidulislamrihan26/cypress-e2e-saucedemo">Cypress code</a><a href="https://github.com/jahidulislamrihan26/selenium-pytest-saucedemo">Selenium code</a></div>
         </div>
       </article>
+
+      <article class="project flip">
+        <div class="shot text"><p>An order and checkout backend (GraphQL, PostgreSQL, Redis) with payment and shipping webhooks. The tests send real requests to it and then check the database, not only the answer.</p></div>
+        <div class="body">
+          <h3>Testing an order backend: webhooks, database and cache</h3>
+          <p>API tests, load tests and mutation testing for a GraphQL order service, run against real PostgreSQL and Redis in CI.</p>
+          <ul>
+            <li>124 tests: the full order state machine, signed webhooks (bad signature, replay, duplicates, out-of-order events), cancellations, returns, 30 customers fighting over 7 items</li>
+            <li>20 deliberately injected faults, all caught by the suite</li>
+            <li>Load test: healthy to about 2,000 requests per second; the first limit is the Node.js process, not the database; 9 data checks pass on 586 orders afterwards</li>
+          </ul>
+          <p class="benefit"><strong>For you:</strong> orders and payments are checked in the database where mistakes are costly (stock, totals, duplicate events), and you learn what breaks first under load.</p>
+          <ul class="tags" aria-label="Skills"><li>GraphQL</li><li>PostgreSQL</li><li>Redis</li><li>TypeScript</li><li>k6</li></ul>
+          <div class="links"><a href="https://github.com/jahidulislamrihan26/graphql-order-api-testing">Code</a><a href="https://github.com/jahidulislamrihan26/graphql-order-api-testing/blob/main/docs/load-test-report.md">Load report</a><a href="https://github.com/jahidulislamrihan26/graphql-order-api-testing/blob/main/docs/mutation-report.md">Mutation report</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="shot text"><p>The tests run on a real Android emulator in GitHub Actions and are repeated to measure how often they fail for no reason. A flow that is wrong on purpose must fail on every run, which proves the checks are real.</p></div>
+        <div class="body">
+          <h3>Mobile app tests with Maestro</h3>
+          <p>End-to-end tests for a React Native shopping app, from the catalog to a placed order.</p>
+          <ul>
+            <li>10 flows, all passing in about 5.5 minutes, including a full purchase</li>
+            <li>Smoke and regression suites chosen by tag; reusable steps shared between tests</li>
+            <li>Smoke flows repeated 10 times: 40 of 40 passed, no flaky test</li>
+            <li>Android so far; not yet run on iOS or real devices</li>
+          </ul>
+          <p class="benefit"><strong>For you:</strong> a release check for your mobile app that runs on every change, with a measured flakiness rate instead of a hope that the tests are stable.</p>
+          <ul class="tags" aria-label="Skills"><li>Maestro</li><li>Mobile testing</li><li>Android</li><li>GitHub Actions</li></ul>
+          <div class="links"><a href="https://github.com/jahidulislamrihan26/mobile-e2e-maestro">Code</a><a href="https://github.com/jahidulislamrihan26/mobile-e2e-maestro/tree/main/flows">Test flows</a><a href="https://github.com/jahidulislamrihan26/mobile-e2e-maestro/blob/main/docs/conventions.md">Flaky-test policy</a></div>
+        </div>
+      </article>
     </section>
 
     <section id="about" aria-labelledby="h-about">
@@ -236,6 +269,7 @@
       <div class="grid">
         <div class="card"><h3>UI test automation</h3><p>Tests for your key user journeys in Playwright, Cypress or Selenium, running in your CI on every change.</p></div>
         <div class="card"><h3>API testing</h3><p>Status codes, response structure, login and permissions, and bad-input cases, with a written list of every defect.</p></div>
+        <div class="card"><h3>Mobile app testing</h3><p>End-to-end tests for your iOS or Android app in Maestro, run on emulators in your CI, with a measured flakiness rate.</p></div>
         <div class="card"><h3>Performance testing</h3><p>Load and stress tests with a plain answer to how many users it can take and what breaks first.</p></div>
         <div class="card"><h3>Manual and exploratory testing</h3><p>A few days of testing before a release, then a ranked report of bugs with steps and evidence.</p></div>
       </div>
@@ -245,7 +279,8 @@
       <h2 id="h-tools">Tools</h2>
       <div class="tools">
         <div class="card"><h3>UI automation</h3><p>Playwright, Cypress, Selenium, TypeScript, JavaScript, Python, pytest, axe-core</p></div>
-        <div class="card"><h3>API and data</h3><p>Postman, Newman, OpenAPI, JSON Schema, SQL</p></div>
+        <div class="card"><h3>API and data</h3><p>Postman, Newman, OpenAPI, GraphQL, JSON Schema, SQL, PostgreSQL, Redis, Vitest</p></div>
+        <div class="card"><h3>Mobile</h3><p>Maestro, Android emulator</p></div>
         <div class="card"><h3>Performance</h3><p>k6, CPU and memory measurements</p></div>
         <div class="card"><h3>Process</h3><p>Git, GitHub Actions, test plans, traceability, defect reports, Jira import files</p></div>
       </div>

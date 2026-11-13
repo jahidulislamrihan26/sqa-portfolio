@@ -14,6 +14,8 @@ automation-testing/reports/
 /qa-templates/
 /cypress-e2e-saucedemo/
 /selenium-pytest-saucedemo/
+/graphql-order-api-testing/
+/mobile-e2e-maestro/
 private-notes/
 
 # Personal files kept next to the repository, never published
