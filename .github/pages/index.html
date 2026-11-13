@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Md. Jahidul Islam Rihan | QA Automation Engineer</title>
-<meta name="description" content="QA Automation Engineer for web, mobile and API testing: Playwright, Cypress, Selenium, Maestro, GraphQL and REST API testing, k6 performance testing and clear defect reports. Projects with live reports.">
+<meta name="description" content="QA Automation Engineer for web, mobile and API testing: Playwright, Cypress, Selenium, Appium, Maestro, manual mobile testing, GraphQL and REST API testing, k6 performance testing and clear defect reports. Projects with live reports.">
 <meta property="og:title" content="Md. Jahidul Islam Rihan | QA Automation Engineer">
 <meta property="og:description" content="Automated tests for web apps and APIs, with live reports you can open: Playwright, Cypress, Selenium, Postman, k6.">
 <meta property="og:type" content="website">
@@ -14,7 +14,7 @@
 <link rel="canonical" href="https://jahidulislamrihan26.github.io/sqa-portfolio/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f3864'/%3E%3Cpath d='M18 34l10 10 18-22' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Md. Jahidul Islam Rihan","jobTitle":"QA Automation Engineer","url":"https://jahidulislamrihan26.github.io/sqa-portfolio/","sameAs":["https://github.com/jahidulislamrihan26"],"address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"knowsLanguage":["Bengali","English"],"knowsAbout":["Test automation","Playwright","Cypress","Selenium","Maestro","Mobile testing","GraphQL","API testing","Postman","Performance testing","k6","Manual testing"]}
+{"@context":"https://schema.org","@type":"Person","name":"Md. Jahidul Islam Rihan","jobTitle":"QA Automation Engineer","url":"https://jahidulislamrihan26.github.io/sqa-portfolio/","sameAs":["https://github.com/jahidulislamrihan26"],"address":{"@type":"PostalAddress","addressLocality":"Dhaka","addressCountry":"BD"},"knowsLanguage":["Bengali","English"],"knowsAbout":["Test automation","Playwright","Cypress","Selenium","Appium","Maestro","Mobile testing","Manual testing","GraphQL","API testing","Postman","Performance testing","k6","Manual testing"]}
 </script>
 <style>
   :root { --bg:#f6f7f9; --card:#ffffff; --ink:#1b2430; --muted:#566272; --accent:#1f3864; --link:#0b5cad; --line:#e1e5ea; --band:#1f3864; --bandink:#ffffff; --chip:#eaf0fb; }
@@ -98,7 +98,7 @@
     <h1>Md. Jahidul Islam Rihan</h1>
     <p class="role">QA Automation Engineer · Dhaka, Bangladesh</p>
     <p class="lead">I find bugs before your users do. I build automated tests for web apps and APIs, and write defect reports your developers can act on. Every project below has a live report you can open.</p>
-    <ul class="chips" aria-label="Main tools"><li>Playwright</li><li>Cypress</li><li>Selenium</li><li>Postman</li><li>GraphQL</li><li>k6</li><li>SQL</li><li>Maestro</li><li>GitHub Actions</li></ul>
+    <ul class="chips" aria-label="Main tools"><li>Playwright</li><li>Cypress</li><li>Selenium</li><li>Postman</li><li>GraphQL</li><li>k6</li><li>SQL</li><li>Appium</li><li>Maestro</li><li>GitHub Actions</li></ul>
     <div class="btns">
       <a class="btn primary" href="#projects">See my projects</a>
       <a class="btn ghost" href="https://github.com/jahidulislamrihan26">GitHub profile</a>
@@ -247,6 +247,38 @@
           <div class="links"><a href="https://github.com/jahidulislamrihan26/mobile-e2e-maestro">Code</a><a href="https://github.com/jahidulislamrihan26/mobile-e2e-maestro/tree/main/flows">Test flows</a><a href="https://github.com/jahidulislamrihan26/mobile-e2e-maestro/blob/main/docs/conventions.md">Flaky-test policy</a></div>
         </div>
       </article>
+
+      <article class="project flip">
+        <div class="shot text"><p>The same shopping app, tested by hand on an Android emulator and then automated. Every result and screenshot can be repeated, and the report says plainly what was not tested.</p></div>
+        <div class="body">
+          <h3>Manual mobile testing: test cases, defects and a QA report</h3>
+          <p>A full manual test package for an Android shopping app, written the way a QA team hands work to a client.</p>
+          <ul>
+            <li>38 test cases with results: 24 passed, 8 failed, 6 not run (iOS, other devices and similar are listed, not hidden)</li>
+            <li>8 defects with steps, screenshots and a screen recording, including one Critical: Back after an order opens a checkout with an empty cart and a working Place Order button</li>
+            <li>Exploratory sessions, a device compatibility plan, an Excel workbook and a Jira import file</li>
+          </ul>
+          <p class="benefit"><strong>For you:</strong> a ranked list of what to fix before release, with steps your developers can follow without asking, and a clear statement of what was not covered.</p>
+          <ul class="tags" aria-label="Skills"><li>Manual testing</li><li>Mobile testing</li><li>Test cases</li><li>Bug reports</li></ul>
+          <div class="links"><a href="https://github.com/jahidulislamrihan26/mobile-app-manual-testing/blob/main/docs/04-qa-summary-report.md">QA report</a><a href="https://github.com/jahidulislamrihan26/mobile-app-manual-testing/blob/main/defects/BUG-001.md">Critical defect</a><a href="https://github.com/jahidulislamrihan26/mobile-app-manual-testing">Code</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="shot text"><p>The same journey as the Maestro project, written with Appium, so the two tools can be compared on one app. Tests only talk to page objects and wait for what they need; there is no fixed sleep.</p></div>
+        <div class="body">
+          <h3>Appium and Python tests for an Android app</h3>
+          <p>Mobile UI tests with Appium, Python and pytest, running on an emulator in GitHub Actions.</p>
+          <ul>
+            <li>14 tests, all passing in about 2 minutes: catalog, cart, login errors, checkout validation and a full purchase</li>
+            <li>Page Object Model, explicit waits, smoke and regression markers, a screenshot when a test fails</li>
+            <li>Android only so far; the README also describes what went wrong in the first runs and how it was fixed</li>
+          </ul>
+          <p class="benefit"><strong>For you:</strong> mobile tests in Appium that your team can read and extend, with the framework conventions already in place.</p>
+          <ul class="tags" aria-label="Skills"><li>Appium</li><li>Python</li><li>pytest</li><li>Page Objects</li></ul>
+          <div class="links"><a href="https://github.com/jahidulislamrihan26/appium-android-pytest">Code</a><a href="https://github.com/jahidulislamrihan26/appium-android-pytest/tree/main/pages">Page objects</a></div>
+        </div>
+      </article>
     </section>
 
     <section id="about" aria-labelledby="h-about">
@@ -269,7 +301,7 @@
       <div class="grid">
         <div class="card"><h3>UI test automation</h3><p>Tests for your key user journeys in Playwright, Cypress or Selenium, running in your CI on every change.</p></div>
         <div class="card"><h3>API testing</h3><p>Status codes, response structure, login and permissions, and bad-input cases, with a written list of every defect.</p></div>
-        <div class="card"><h3>Mobile app testing</h3><p>End-to-end tests for your iOS or Android app in Maestro, run on emulators in your CI, with a measured flakiness rate.</p></div>
+        <div class="card"><h3>Mobile app testing</h3><p>Manual testing of your Android app with test cases and a defect report, and automated end-to-end tests in Appium or Maestro on emulators in your CI.</p></div>
         <div class="card"><h3>Performance testing</h3><p>Load and stress tests with a plain answer to how many users it can take and what breaks first.</p></div>
         <div class="card"><h3>Manual and exploratory testing</h3><p>A few days of testing before a release, then a ranked report of bugs with steps and evidence.</p></div>
       </div>
@@ -280,7 +312,7 @@
       <div class="tools">
         <div class="card"><h3>UI automation</h3><p>Playwright, Cypress, Selenium, TypeScript, JavaScript, Python, pytest, axe-core</p></div>
         <div class="card"><h3>API and data</h3><p>Postman, Newman, OpenAPI, GraphQL, JSON Schema, SQL, PostgreSQL, Redis, Vitest</p></div>
-        <div class="card"><h3>Mobile</h3><p>Maestro, Android emulator</p></div>
+        <div class="card"><h3>Mobile</h3><p>Appium, Maestro, Android emulator</p></div>
         <div class="card"><h3>Performance</h3><p>k6, CPU and memory measurements</p></div>
         <div class="card"><h3>Process</h3><p>Git, GitHub Actions, test plans, traceability, defect reports, Jira import files</p></div>
       </div>

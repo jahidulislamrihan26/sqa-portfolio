@@ -16,6 +16,8 @@ automation-testing/reports/
 /selenium-pytest-saucedemo/
 /graphql-order-api-testing/
 /mobile-e2e-maestro/
+/mobile-app-manual-testing/
+/appium-android-pytest/
 private-notes/
 
 # Personal files kept next to the repository, never published
