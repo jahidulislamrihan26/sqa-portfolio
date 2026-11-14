@@ -255,7 +255,7 @@
           <p>A full manual test package for an Android shopping app, written the way a QA team hands work to a client.</p>
           <ul>
             <li>38 test cases with results: 24 passed, 8 failed, 6 not run (iOS, other devices and similar are listed, not hidden)</li>
-            <li>8 defects with steps, screenshots and a screen recording, including one Critical: Back after an order opens a checkout with an empty cart and a working Place Order button</li>
+            <li>8 defects with steps, screenshots and a screen recording, including one Critical: Back after an order opens a checkout with an empty cart, and Place Order confirms an order with no items</li>
             <li>Exploratory sessions, a device compatibility plan, an Excel workbook and a Jira import file</li>
           </ul>
           <p class="benefit"><strong>For you:</strong> a ranked list of what to fix before release, with steps your developers can follow without asking, and a clear statement of what was not covered.</p>
@@ -271,6 +271,7 @@
           <p>Mobile UI tests with Appium, Python and pytest, running on an emulator in GitHub Actions.</p>
           <ul>
             <li>14 tests, all passing in about 2 minutes: catalog, cart, login errors, checkout validation and a full purchase</li>
+            <li>Repeated 5 times: 70 of 70 passed, no flaky test; a deliberately wrong test must fail, and does</li>
             <li>Page Object Model, explicit waits, smoke and regression markers, a screenshot when a test fails</li>
             <li>Android only so far; the README also describes what went wrong in the first runs and how it was fixed</li>
           </ul>
